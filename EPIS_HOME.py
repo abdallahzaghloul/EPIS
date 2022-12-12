@@ -38,7 +38,7 @@ fig.append_trace(go.Histogram(x=df[df['FAIL/PASS']=="Pass"]['LOCATION']), row=1,
 fig.update_layout(title_text='EDC-87 Drops Analysis', showlegend=False)
 fig.add_annotation(x='Fail', text=f"{Fail}({Fail_}%)", showarrow=True, arrowhead=3)
 fig.add_annotation(x='Pass', text=f"{Pass}({Pass_}%)", showarrow=True, arrowhead=1)
-st.plotly_chart(fig_1, use_container_width=True)
+st.plotly_chart(fig, use_container_width=True)
 
 
 
