@@ -6,10 +6,11 @@ from plotly.subplots import make_subplots  #8
 import plotly.figure_factory as ff #21
 from PIL import Image
 import streamlit as st
+
 im = Image.open("EPIS.png")
+
 image = np.array(im)
 st.image(image)
-
 
 st.markdown(" <center>  <h1> EDC-87 Drops Analysis </h1> </font> </center> </h1> ",
             unsafe_allow_html=True)
@@ -39,13 +40,3 @@ fig.update_layout(title_text='EDC-87 Drops Analysis', showlegend=False)
 fig.add_annotation(x='Fail', text=f"{Fail}({Fail_}%)", showarrow=True, arrowhead=3)
 fig.add_annotation(x='Pass', text=f"{Pass}({Pass_}%)", showarrow=True, arrowhead=1)
 st.plotly_chart(fig, use_container_width=True)
-
-
-
-
-
-# streamlit run "C:\\Users\\hp\\Desktop\\Data Science\\Mid-Project\\Data_Visulaization_Project_Files\\Mid_Project_Visualization_Streamlit.py"
-
-
-
-
