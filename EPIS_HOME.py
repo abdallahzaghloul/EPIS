@@ -1,8 +1,11 @@
+import numpy as np #1
+import pandas as pd #2
+import plotly.graph_objects as go  #6
+import plotly.express as px  #7
+from plotly.subplots import make_subplots  #8
+import plotly.figure_factory as ff #21
 from PIL import Image
 import streamlit as st
-import pandas as pd
-import numpy as np
-
 im = Image.open("EPIS.png")
 image = np.array(im)
 st.image(image)
