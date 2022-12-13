@@ -6,7 +6,7 @@ from plotly.subplots import make_subplots  #8
 import plotly.figure_factory as ff #21
 from PIL import Image
 import streamlit as st
-
+import requests
 pd.set_option('mode.chained_assignment',None)
 
 im = Image.open("pages/EPIS.png")
@@ -16,8 +16,9 @@ st.image(image)
 
 st.markdown(" <center>  <h1> KPC (DRLG/WO) Drops Analysis </h1> </font> </center> </h1> ",
             unsafe_allow_html=True)
- 
-df = pd.read_excel("../Book1.xlsx")
+url = "https://github.com/abdallahzaghloul/EPIS/blob/main/Book1.xlsx?raw =True"
+response = requests.get(url)
+df = pd.read_excel(url)
 df.columns  = [i.replace(' ','_') for i in df.columns]
 df.columns  = [i.upper() for i in df.columns]
 for i in ['DESCRIPTION','LOCATION']:
