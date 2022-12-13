@@ -31,9 +31,9 @@ Fail_= round(((df[df['FAIL/PASS']=='Fail'].value_counts().sum() / (df['FAIL/PASS
 Pass=df[df['FAIL/PASS']=='Pass'].value_counts().sum() 
 Pass_= round(((df[df['FAIL/PASS']=='Pass'].value_counts().sum() / (df['FAIL/PASS'].value_counts().sum()))*100),2)
 
-fig1 = make_subplots(rows=1, cols=3, subplot_titles=("Passed Points Vs. Fail Points","Fail Points Location Distribution","Pass Points Location Distribution"))
+fig1 = make_subplots(rows=1, cols=2, subplot_titles=("Passed Points Vs. Fail Points","Fail Points Location Distribution","Pass Points Location Distribution"))
  
-fig.append_trace(go.Histogram(x=df['FAIL/PASS']), row=1, col=1)
+
 
 fig1.append_trace(go.Histogram(x=df[df['FAIL/PASS']=="Fail"]['LOCATION']), row=1, col=1)
 fig1.append_trace(go.Histogram(x=df[df['FAIL/PASS']=="Pass"]['LOCATION']), row=1, col=2)
