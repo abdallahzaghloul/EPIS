@@ -9,7 +9,7 @@ import streamlit as st
 
 pd.set_option('mode.chained_assignment',None)
 
-im = Image.open("EPIS\EPIS.png")
+im = Image.open("pages/EPIS.png")
 image = np.array(im)
 st.image(image)
 
