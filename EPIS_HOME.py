@@ -37,8 +37,8 @@ fig1.append_trace(go.Histogram(x=df[df['FAIL/PASS']=="Fail"]['LOCATION']), row=1
 fig1.append_trace(go.Histogram(x=df[df['FAIL/PASS']=="Pass"]['LOCATION']), row=1, col=2)
 
 fig2 = px.histogram(df, x='FAIL/PASS')
-fig2.add_annotation(x='Fail', text=f"{Fail}({Fail_}%)", showarrow=True, arrowhead=3)
-fig2.add_annotation(x='Pass', text=f"{Pass}({Pass_}%)", showarrow=True, arrowhead=1)
+fig2.add_annotation(x='Fail',y=Fail, text=f"{Fail}({Fail_}%)", showarrow=True, arrowhead=3)
+fig2.add_annotation(x='Pass', y=Pass,text=f"{Pass}({Pass_}%)", showarrow=True, arrowhead=1)
 st.plotly_chart(fig1, use_container_width=True)
 
 st.write("This graph is hsowing Bla Bla Bla Bla Bla ")
