@@ -17,7 +17,7 @@ st.image(image)
 st.markdown(" <center>  <h1> KPC (DRLG/WO) Drops Analysis </h1> </font> </center> </h1> ",
             unsafe_allow_html=True)
  
-df = pd.read_excel("EPIS\Book1.xlsx")
+df = pd.read_excel("../Book1.xlsx")
 df.columns  = [i.replace(' ','_') for i in df.columns]
 df.columns  = [i.upper() for i in df.columns]
 for i in ['DESCRIPTION','LOCATION']:
