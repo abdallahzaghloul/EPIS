@@ -14,7 +14,7 @@ image = np.array(im)
 st.image(image)
 
 
-st.markdown(" <center>  <h1> KPC (DRLG/WO) Drops Analysis </h1> </font> </center> </h1> ",
+st.markdown(" <center>  <h1> KPC (WO) Drops Analysis </h1> </font> </center> </h1> ",
             unsafe_allow_html=True)
  
 #####
@@ -26,27 +26,24 @@ for i in ['DESCRIPTION','LOCATION']:
 Fail_Pass = {0:'Pass',1:'Fail'}
 df['FAIL/PASS'] = df['FAIL/PASS'].map(Fail_Pass)
  
-Fail_DRLG=df[(df['FAIL/PASS']=='Fail')&(df['RIG_JOB']=="DRLG")].value_counts().sum() 
-Fail_DRLG_= round(((df[df['FAIL/PASS']=='Fail'].value_counts().sum() / (df['FAIL/PASS'].value_counts().sum()))*100),2)
+Fail_WO=df[(df['FAIL/PASS']=='Fail')&(df['RIG_JOB']=="WO")].value_counts().sum() 
+Fail_WO_= round(((df[df['FAIL/PASS']=='Fail'].value_counts().sum() / (df['FAIL/PASS'].value_counts().sum()))*100),2)
 
-Pass_DRLG=df[(df['FAIL/PASS']=='Pass')&(df['RIG_JOB']=="DRLG")].value_counts().sum() 
-Pass_DRLG_= round(((df[df['FAIL/PASS']=='Pass'].value_counts().sum() / (df['FAIL/PASS'].value_counts().sum()))*100),2)
+Pass_WO=df[(df['FAIL/PASS']=='Pass')&(df['RIG_JOB']=="WO")].value_counts().sum() 
+Pass_WO_= round(((df[df['FAIL/PASS']=='Pass'].value_counts().sum() / (df['FAIL/PASS'].value_counts().sum()))*100),2)
 
 
 fig1 = make_subplots(rows=1, cols=2, subplot_titles=("Pass Points Location Distribution","Fail Points Location Distribution"))
  
-fig1.append_trace(go.Histogram(x=df[(df['FAIL/PASS']=="Pass")&(df['RIG_JOB']=="DRLG")]['LOCATION']), row=1, col=1)
-fig1.append_trace(go.Histogram(x=df[(df['FAIL/PASS']=="Fail")&(df['RIG_JOB']=="DRLG")]['LOCATION']), row=1, col=2)
+fig1.append_trace(go.Histogram(x=df[(df['FAIL/PASS']=="Pass")&(df['RIG_JOB']=="WO")]['LOCATION']), row=1, col=1)
+fig1.append_trace(go.Histogram(x=df[(df['FAIL/PASS']=="Fail")&(df['RIG_JOB']=="WO")]['LOCATION']), row=1, col=2)
 
-fig1.update_layout(title_text='KPC Rigs (DRLG) Drops Analysis', showlegend=False)
-
-#st.plotly_chart(fig_1, use_container_width=True)
+fig1.update_layout(title_text='KPC Rigs (WO) Drops Analysis', showlegend=False)
 
 
-
-fig2 = px.histogram(df, x= df[df['RIG_JOB']=="DRLG"]['FAIL/PASS']) 
-fig2.add_annotation(x='Fail', y= Fail_DRLG, text=f"{Fail_DRLG}({Fail_DRLG_}%)", showarrow=True, arrowhead=1)
-fig2.add_annotation(x='Pass', y= Pass_DRLG,text=f"{Pass_DRLG}({Pass_DRLG_}%)", showarrow=True, arrowhead=1)
+fig2 = px.histogram(df, x= df[df['RIG_JOB']=="WO"]['FAIL/PASS']) 
+fig2.add_annotation(x='Fail', y= Fail_WO, text=f"{Fail_WO}({Fail_WO_}%)", showarrow=True, arrowhead=1)
+fig2.add_annotation(x='Pass', y= Pass_WO,text=f"{Pass_WO}({Pass_WO_}%)", showarrow=True, arrowhead=1)
 
 #####
 st.plotly_chart(fig1, use_container_width=True)
