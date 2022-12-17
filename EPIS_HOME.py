@@ -17,6 +17,7 @@ st.markdown(" <center>  <h1> KPC (DRLG/WO) Drops Analysis </h1> </font> </center
             unsafe_allow_html=True)
  
 ###
+
 df = pd.read_excel("Book1.xlsx")
 df.columns  = [i.replace(' ','_') for i in df.columns]
 df.columns  = [i.upper() for i in df.columns]
@@ -44,8 +45,8 @@ fig1.update_layout(title_text='KPC Rigs (WO/DRLG) Drops Analysis', showlegend=Fa
 
 
 fig2 = px.histogram(df, x= 'FAIL/PASS') 
-fig2.add_annotation(x='Fail',y=Fail ,text=f"{Fail}({Fail_}%)", showarrow=True, arrowhead=1)
-fig2.add_annotation(x='Pass', y=Pass,text=f"{Pass}({Pass_}%)", showarrow=True, arrowhead=1)
+fig2.add_annotation(x='Fail', text=f"{Fail}({Fail_}%)", showarrow=True, arrowhead=1)
+fig2.add_annotation(x='Pass', text=f"{Pass}({Pass_}%)", showarrow=True, arrowhead=1)
 
 
 ###
