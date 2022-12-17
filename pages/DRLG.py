@@ -30,10 +30,10 @@ df['FAIL/PASS'] = df['FAIL/PASS'].map(Fail_Pass)
 
 Total_DRLG =   (df[df['RIG_JOB']=="DRLG"].value_counts().sum()) 
 Fail_DRLG=df[(df['FAIL/PASS']=='Fail')&(df['RIG_JOB']=="DRLG")].value_counts().sum() 
-Fail_DRLG_= round(((Fail_DRLG/Total_WO)*100),2)
+Fail_DRLG_= round(((Fail_DRLG/Total_DRLG)*100),2)
 
 Pass_DRLG=df[(df['FAIL/PASS']=='Pass')&(df['RIG_JOB']=="DRLG")].value_counts().sum() 
-Pass_DRLG_= round(((Pass_DRLG/Total_WO)*100),2)
+Pass_DRLG_= round(((Pass_DRLG/Total_DRLG)*100),2)
 
 
 fig1 = make_subplots(rows=1, cols=2, subplot_titles=("Pass Points Location Distribution","Fail Points Location Distribution"))
