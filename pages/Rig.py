@@ -49,16 +49,10 @@ for i in Rigo:
     fig2.add_annotation(x='Pass', y= Pass_Rig,text=f"{Pass_Rig}({Pass_Rig_}%)", showarrow=True, arrowhead=1)
     fig1.show()
     fig2.show()
-
-
-#####
-st.plotly_chart(fig1, use_container_width=True)
-
-st.write("This graph is hsowing Bla Bla Bla Bla Bla ")
-
-st.plotly_chart(fig2, use_container_width=True)
-
-st.write("This graph is hsowing Bla Bla Bla Bla Bla ")
+    st.plotly_chart(fig1, use_container_width=True)
+    st.write("This graph is hsowing Bla Bla Bla Bla Bla ")
+    st.plotly_chart(fig2, use_container_width=True)
+    st.write("This graph is hsowing Bla Bla Bla Bla Bla ")
 
 # streamlit run "C:\\Users\\hp\\Desktop\\EPIS\\EDC_87\\EPIS_HOME.py" 
 
