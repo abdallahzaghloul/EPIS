@@ -50,9 +50,9 @@ for i in Rigo:
     fig1.show()
     fig2.show()
     st.plotly_chart(fig1, use_container_width=True)
-    st.write("This graph is hsowing Bla Bla Bla Bla Bla ")
+    st.write("This graph is showing Bla Bla Bla Bla Bla ")
     st.plotly_chart(fig2, use_container_width=True)
-    st.write("This graph is hsowing Bla Bla Bla Bla Bla ")
+    st.write("This graph is showing Bla Bla Bla Bla Bla ")
 
 # streamlit run "C:\\Users\\hp\\Desktop\\EPIS\\EDC_87\\EPIS_HOME.py" 
 
