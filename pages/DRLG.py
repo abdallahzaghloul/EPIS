@@ -26,12 +26,13 @@ for i in ['DESCRIPTION','LOCATION']:
     df[i]= df[i].str.upper().str.replace(' ', '_')
 Fail_Pass = {0:'Pass',1:'Fail'}
 df['FAIL/PASS'] = df['FAIL/PASS'].map(Fail_Pass)
+ 
+Fail_DRLG=df[(df['FAIL/PASS']=='Fail')&(df['RIG_JOB']=="DRLG")].value_counts().sum() 
+Fail_DRLG_= round(((df[df['FAIL/PASS']=='Fail'].value_counts().sum() / (df['FAIL/PASS'].value_counts().sum()))*100),2)
 
-Fail=df[df['FAIL/PASS']=='Fail'].value_counts().sum() 
-Fail_= round(((df[df['FAIL/PASS']=='Fail'].value_counts().sum() / (df['FAIL/PASS'].value_counts().sum()))*100),2)
+Pass_DRLG=df[(df['FAIL/PASS']=='Pass')&(df['RIG_JOB']=="DRLG")].value_counts().sum() 
+Pass_DRLG_= round(((df[df['FAIL/PASS']=='Pass'].value_counts().sum() / (df['FAIL/PASS'].value_counts().sum()))*100),2)
 
-Pass=df[df['FAIL/PASS']=='Pass'].value_counts().sum() 
-Pass_= round(((df[df['FAIL/PASS']=='Pass'].value_counts().sum() / (df['FAIL/PASS'].value_counts().sum()))*100),2)
 
 fig1 = make_subplots(rows=1, cols=2, subplot_titles=("Pass Points Location Distribution","Fail Points Location Distribution"))
  
@@ -44,9 +45,10 @@ fig1.update_layout(title_text='KPC Rigs (DRLG) Drops Analysis', showlegend=False
 
 
 
-fig2 = px.histogram(df, x= 'FAIL/PASS') 
-fig2.add_annotation(x='Fail',y=Fail ,text=f"{Fail}({Fail_}%)", showarrow=True, arrowhead=1)
-fig2.add_annotation(x='Pass', y=Pass,text=f"{Pass}({Pass_}%)", showarrow=True, arrowhead=1)
+fig2 = px.histogram(df, x= df[df['RIG_JOB']=="DRLG"]['FAIL/PASS']) 
+fig2.add_annotation(x='Fail', y= Fail_DRLG, text=f"{Fail_DRLG}({Fail_DRLG_}%)", showarrow=True, arrowhead=1)
+fig2.add_annotation(x='Pass', y= Pass_DRLG,text=f"{Pass_DRLG}({Pass_DRLG_}%)", showarrow=True, arrowhead=1)
+
 
 #####
 st.plotly_chart(fig1, use_container_width=True)
