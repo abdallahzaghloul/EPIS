@@ -25,12 +25,14 @@ for i in ['DESCRIPTION','LOCATION']:
     df[i]= df[i].str.upper().str.replace(' ', '_')
 Fail_Pass = {0:'Pass',1:'Fail'}
 df['FAIL/PASS'] = df['FAIL/PASS'].map(Fail_Pass)
- 
+
+Total_WO =   (df[df['RIG_JOB']=="WO"].value_counts().sum())
 Fail_WO=df[(df['FAIL/PASS']=='Fail')&(df['RIG_JOB']=="WO")].value_counts().sum() 
-Fail_WO_= round(((df[df['FAIL/PASS']=='Fail'].value_counts().sum() / (df['FAIL/PASS'].value_counts().sum()))*100),2)
+Fail_WO_= round(((Fail_WO/Total_WO)*100),2)
+
 
 Pass_WO=df[(df['FAIL/PASS']=='Pass')&(df['RIG_JOB']=="WO")].value_counts().sum() 
-Pass_WO_= round(((df[df['FAIL/PASS']=='Pass'].value_counts().sum() / (df['FAIL/PASS'].value_counts().sum()))*100),2)
+Pass_WO_= round(((Pass_WO/Total_WO)*100),2)
 
 
 fig1 = make_subplots(rows=1, cols=2, subplot_titles=("Pass Points Location Distribution","Fail Points Location Distribution"))
@@ -39,7 +41,6 @@ fig1.append_trace(go.Histogram(x=df[(df['FAIL/PASS']=="Pass")&(df['RIG_JOB']=="W
 fig1.append_trace(go.Histogram(x=df[(df['FAIL/PASS']=="Fail")&(df['RIG_JOB']=="WO")]['LOCATION']), row=1, col=2)
 
 fig1.update_layout(title_text='KPC Rigs (WO) Drops Analysis', showlegend=False)
-
 
 fig2 = px.histogram(df, x= df[df['RIG_JOB']=="WO"]['FAIL/PASS']) 
 fig2.add_annotation(x='Fail', y= Fail_WO, text=f"{Fail_WO}({Fail_WO_}%)", showarrow=True, arrowhead=1)
