@@ -31,10 +31,10 @@ for i in Rigo:
     Total_Rig =   (df[df['RIG_JOB']=="DRLG"].value_counts().sum())
     
     Fail_Rig=df[(df['FAIL/PASS']=='Fail')&(df['RIG_NAME']==i)].value_counts().sum() 
-    Fail_Rig_= round(((Fail_Rig/Total_WO)*100),2)
+    Fail_Rig_= round(((Fail_Rig/Total_Rig)*100),2)
    
     Pass_Rig=df[(df['FAIL/PASS']=='Pass')&(df['RIG_NAME']==i)].value_counts().sum() 
-    Pass_Rig_= round(((Pass_Rig/Total_WO)*100),2)
+    Pass_Rig_= round(((Pass_Rig/Total_Rig)*100),2)
 
     fig1 = make_subplots(rows=1, cols=2, subplot_titles=("Pass Points Location Distribution","Fail Points Location Distribution"))
         
