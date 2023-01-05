@@ -17,9 +17,9 @@ st.markdown(" <center>  <h1> KPC (DRLG/WO) Drops Analysis </h1> </font> </center
             unsafe_allow_html=True)
  
 ###
-df = pd.read_excel('Book2.xlsx')
+
 pd.set_option('mode.chained_assignment',None)
-df = pd.read_excel(url)
+df = pd.read_excel('Book2.xlsx')
 df.columns  = [i.replace(' ','_') for i in df.columns]
 df.columns  = [i.upper() for i in df.columns]
 Camp_List= list(df.columns)
