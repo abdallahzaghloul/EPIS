@@ -17,46 +17,22 @@ st.markdown(" <center>  <h1> KPC (DRLG/WO) Drops Analysis </h1> </font> </center
             unsafe_allow_html=True)
  
 ###
-
-df = pd.read_excel("Book1.xlsx")
+df = pd.read_excel('Book2')
+pd.set_option('mode.chained_assignment',None)
+df = pd.read_excel(url)
 df.columns  = [i.replace(' ','_') for i in df.columns]
 df.columns  = [i.upper() for i in df.columns]
-for i in ['DESCRIPTION','LOCATION']:
-    df[i]= df[i].str.upper().str.replace(' ', '_')
-Fail_Pass = {0:'Pass',1:'Fail'}
-df['FAIL/PASS'] = df['FAIL/PASS'].map(Fail_Pass)
-
-Fail=df[df['FAIL/PASS']=='Fail'].value_counts().sum() 
-Fail_= round(((df[df['FAIL/PASS']=='Fail'].value_counts().sum() / (df['FAIL/PASS'].value_counts().sum()))*100),2)
-
-Pass=df[df['FAIL/PASS']=='Pass'].value_counts().sum() 
-Pass_= round(((df[df['FAIL/PASS']=='Pass'].value_counts().sum() / (df['FAIL/PASS'].value_counts().sum()))*100),2)
-
-fig1 = make_subplots(rows=1, cols=2, subplot_titles=("Pass Points Location Distribution","Fail Points Location Distribution"))
- 
-fig1.append_trace(go.Histogram(x=df[df['FAIL/PASS']=="Pass"]['LOCATION']), row=1, col=1)
-fig1.append_trace(go.Histogram(x=df[df['FAIL/PASS']=="Fail"]['LOCATION']), row=1, col=2)
-
-fig1.update_layout(title_text='KPC Rigs (WO/DRLG) Drops Analysis', showlegend=False)
-
-#st.plotly_chart(fig_1, use_container_width=True)
-
-
-
-
-fig2 = px.histogram(df, x= 'FAIL/PASS') 
-fig2.add_annotation(x='Fail',y=Fail, text=f"{Fail}({Fail_}%)", showarrow=True, arrowhead=1)
-fig2.add_annotation(x='Pass',y=Pass, text=f"{Pass}({Pass_}%)", showarrow=True, arrowhead=1)
-
-
-###
-st.plotly_chart(fig1, use_container_width=True)
-
-st.write("This graph is hsowing Bla Bla Bla Bla Bla ")
-
-st.plotly_chart(fig2, use_container_width=True)
-
-st.write("This graph is hsowing Bla Bla Bla Bla Bla ")
+Camp_List= list(df.columns)
+Removed=['PASS','RIG_TYPE']
+Camp_List.remove('RIG_TYPE')
+Camp_List.remove('RIG_NAME')
+Camp_Count=[df['PASS'].sum()]
+for i in range (1, len(Camp_List)):
+  Camp_Count.append(df[Camp_List[i]].sum()) 
+  fig = px.bar(x= Camp_List[0:i+1], y= Camp_Count,labels={ 'y':'Total Achievements'})
+  fig.update_layout(title_text="Campaigns Progress", showlegend=False)
+  st.plotly_chart(fig, use_container_width=True)
+  st.write("This graph is hsowing Bla Bla Bla Bla Bla ")
 
 # streamlit run "C:\\Users\\hp\\Desktop\\EPIS\\EDC_87\\EPIS_HOME.py" 
 
