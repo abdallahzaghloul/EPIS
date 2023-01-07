@@ -26,10 +26,11 @@ Camp_List= list(df.columns)
 Removed=['PASS','RIG_TYPE']
 Camp_List.remove('RIG_TYPE')
 Camp_List.remove('RIG_NAME')
-Camp_Count=[df['PASS'].sum()]
+#Camp_Count=[df['PASS'].sum()]
+Camp_Count=[]
 for i in range (1, len(Camp_List)):
   Camp_Count.append(df[Camp_List[i]].sum()) 
-  fig = px.bar(x= Camp_List[0:i+1], y= Camp_Count,labels={ 'y':'Total Achievements'})
+  fig = px.bar(x= Camp_List[1:i+1], y= Camp_Count,labels={ 'y':'Total Achievements'})
   fig.update_layout(title_text="Campaigns Progress", showlegend=False)
   st.plotly_chart(fig, use_container_width=True)
   st.write("This graph is hsowing Bla Bla Bla Bla Bla ")
